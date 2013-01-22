@@ -30,6 +30,7 @@ nv.models.linePlusBarChart = function() {
     , y2
     , noData = "No Data Available."
     , dispatch = d3.dispatch('tooltipShow', 'tooltipHide', 'stateChange', 'changeState')
+    , axis_text = {left: 'left axis', right: 'right axis'}
     ;
 
   bars
@@ -151,7 +152,7 @@ nv.models.linePlusBarChart = function() {
         g.select('.nv-legendWrap')
             .datum(data.map(function(series) {
               series.originalKey = series.originalKey === undefined ? series.key : series.originalKey;
-              series.key = series.originalKey + (series.bar ? ' (left axis)' : ' (right axis)');
+              series.key = series.originalKey + (series.bar ? ' (' + axis_text.left + ')' : ' (' + axis_text.right + ')');
               return series;
             }))
           .call(legend);
@@ -413,6 +414,13 @@ nv.models.linePlusBarChart = function() {
     noData = _;
     return chart;
   };
+
+  chart.axis_text = function(_) {
+    if (!arguments.length) return axis_text;
+    axis_text = _;
+    return chart;
+  };
+
 
   //============================================================
 
