@@ -289,7 +289,7 @@ nv.models.scatterChart = function() {
 
 
 
-      if (d3.fisheye) {
+      if (showControls) {
         g.select('.nv-background')
             .attr('width', availableWidth)
             .attr('height', availableHeight);
@@ -303,7 +303,7 @@ nv.models.scatterChart = function() {
 
 
       function updateFisheye() {
-        if (pauseFisheye) {
+        if (pauseFisheye || controlsData[0].disabled) {
           g.select('.nv-point-paths').style('pointer-events', 'all');
           return false;
         }
