@@ -153,7 +153,7 @@ nv.models.pieChart = function() {
           });
         }
 
-        state.disabled = data[0].map(function(d) { return !!d.disabled });
+        state.disabled = data.map(function(d) { return !!d.disabled });
         dispatch.stateChange(state);
 
         selection.transition().call(chart)
